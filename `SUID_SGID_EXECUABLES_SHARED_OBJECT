@@ -45,5 +45,12 @@ It will list followings:-
 -rwxr-sr-x 1 root shadow 31864 Oct 17  2011 /sbin/unix_chkpwd
 -rwsr-xr-x 1 root root 94992 Dec 13  2014 /sbin/mount.nfs
 
+Now we will exploit /usr/local/bin/suid-so
+When we run this file, a progressbar will be displayed.
+
+Trying to use strace.
+
+strace /usr/local/bin/suid-so 2>&1 | grep -iE "open|access|no such file"
+
 
 
