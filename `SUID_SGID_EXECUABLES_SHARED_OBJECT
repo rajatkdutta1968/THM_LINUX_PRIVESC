@@ -73,3 +73,5 @@ void inject() {
 (c) gcc -shared -fPIC -o /home/user/.config/libcalc.so /home/user/tools/suid/libcalc.c
 
 
+(d)  Again execute the executable:
+/usr/local/bin/suid-so
